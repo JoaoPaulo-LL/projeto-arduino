@@ -1,15 +1,25 @@
 {
-  "dependencies": {
-    "johnny-five": "^2.1.0"
-  },
   "name": "arduino-jf",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "Projeto utilizando arduino.",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "johnny-five": "^2.1.0",
+    "serialport": "^8.0.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoaoPaulo-LL/projeto-arduino.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JoaoPaulo-LL/projeto-arduino/issues"
+  },
+  "homepage": "https://github.com/JoaoPaulo-LL/projeto-arduino#readme"
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle do Relé</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+  <div class="container">
+      <h1>Controle do Relé</h1>
+      <button id="ligar">Ligar Relé</button>
+      <button id="desligar" class="off">Desligar Relé</button>
+      <div class="tensao-container">
+        <h3>Tensão Atual:</h3>
+        <p id="tensao">Carregando...</p>
+      </div>
+  </div>
+
+  <script>
+    document.getElementById('ligar').addEventListener('click', function() {
+      fetch('/ligar', { method: 'POST' })
+        .then(response => response.text())
+        .then(data => console.log(data));
+    });
+
+    document.getElementById('desligar').addEventListener('click', function() {
+      fetch('/desligar', { method: 'POST' })
+        .then(response => response.text())
+        .then(data => console.log(data));
+    });
+
+    // Função para atualizar a tensão medida
+    function atualizarTensao() {
+      fetch('/tensao')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('tensao').innerText = data.tensao;
+        });
+    }
+
+    // Atualiza a tensão a cada 1 segundo
+    setInterval(atualizarTensao, 1000);
+  </script>
+</body>
+</html>
