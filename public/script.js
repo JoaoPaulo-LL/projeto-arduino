@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const tensaoElement = document.getElementById("tensao");
     const reléButton = document.getElementById("desligar");
+    const loadingElement = document.getElementById("loading");
 
     // Dados iniciais para o gráfico
     const dadosTensao = {
@@ -36,8 +37,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const graficoTensao = new ApexCharts(document.querySelector("#grafico-tensao"), dadosTensao);
     graficoTensao.render();
 
+    // Função para mostrar o spinner
+    function mostrarCarregando() {
+        loadingElement.style.display = 'flex'; // Mostrar o spinner
+    }
+
+    // Função para esconder o spinner
+    function esconderCarregando() {
+        loadingElement.style.display = 'none'; // Esconder o spinner
+    }
+
     // Função para atualizar a tensão no front-end e no gráfico
     function atualizarTensao() {
+        mostrarCarregando(); // Mostrar o spinner enquanto os dados estão sendo carregados
+
         fetch("http://localhost:3000/tensao")
             .then(response => response.json())
             .then(data => {
@@ -54,12 +67,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
 
                 graficoTensao.updateSeries(dadosTensao.series);
+                esconderCarregando(); // Esconder o spinner após a conclusão do carregamento
             })
-            .catch(error => console.error("Erro ao obter tensão:", error));
+            .catch(error => {
+                console.error("Erro ao obter tensão:", error);
+                esconderCarregando(); // Esconder o spinner em caso de erro
+            });
     }
 
     // Função para ligar/desligar o relé
     reléButton.addEventListener("click", function() {
+        mostrarCarregando(); // Mostrar o spinner enquanto processa o comando
+
         fetch("http://localhost:3000/relé", { method: "POST" })
             .then(response => response.json())
             .then(data => {
@@ -74,8 +93,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     reléButton.classList.add('off');
                     reléButton.textContent = 'Ligar Relé';
                 }
+                esconderCarregando(); // Esconder o spinner após o comando ser executado
             })
-            .catch(error => console.error("Erro ao controlar relé:", error));
+            .catch(error => {
+                console.error("Erro ao controlar relé:", error);
+                esconderCarregando(); // Esconder o spinner em caso de erro
+            });
     });
 
     // Atualiza a tensão a cada 1 segundo
