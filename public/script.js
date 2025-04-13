@@ -43,9 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Função para esconder o spinner
-    function esconderCarregando() {
-        loadingElement.style.display = 'none'; // Esconder o spinner
-    }
+    // function esconderCarregando() {
+    //     loadingElement.style.display = 'none'; // Esconder o spinner
+    // }
 
     // Função para atualizar a tensão no front-end e no gráfico
     function atualizarTensao() {
