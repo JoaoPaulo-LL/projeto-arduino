@@ -8,7 +8,7 @@
 /* Corpo da página */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  background-color: lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,9 @@ body {
 /* Container que envolve o conteúdo */
 .container {
   padding: 30px;
-  background-color: #858585;
+  background-color: white;
+  border: 1px solid black;
+  box-shadow: 10px 10px 10px gray;
   border-radius: 10px;
   text-align: center;
   width: 60%;
@@ -46,7 +48,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #17521a;
 }
 
 /* Botão de desativação */
@@ -55,7 +57,7 @@ button.off {
 }
 
 button.off:hover {
-  background-color: #e53935;
+  background-color: #661c1b;
 }
 
 /* Exibir a tensão */
@@ -63,6 +65,10 @@ button.off:hover {
   margin-top: 20px;
   font-size: 18px;
   color: #333;
+
+  p {
+    font-size: 50px;
+  }
 }
 
 /* Contêiner do gráfico */
@@ -71,6 +77,8 @@ button.off:hover {
   width: 100%;
   max-width: 800px;
   height: 400px;
+  display: flex;
+  margin: auto;
 }
 
 /* Estilo do Spinner de Carregamento */

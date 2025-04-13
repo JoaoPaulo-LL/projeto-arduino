@@ -27,6 +27,28 @@
     <!-- Contêiner para o gráfico de Tensão -->
     <div id="grafico-tensao"></div>
   </div>
+  <script>
+    document.getElementById('ligar').addEventListener('click', function() {
+      fetch('/ligar', { method: 'POST' })
+        .then(response => response.text())
+        .then(data => console.log(data));
+    });
+
+    document.getElementById('desligar').addEventListener('click', function() {
+      fetch('/desligar', { method: 'POST' })
+        .then(response => response.text())
+        .then(data => console.log(data));
+    });
+
+    // Função para atualizar a tensão medida
+    function atualizarTensao() {
+      fetch('/tensao')
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById('tensao').innerText = data.tensao;
+        });
+    }
+  </script>
 
   <script src="script.js"></script> <!-- Conectando o script do JavaScript -->
 </body>

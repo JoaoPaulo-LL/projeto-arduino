@@ -77,31 +77,6 @@ board.on("ready", function () {
     }
   });
 
-  // Rota para ligar o relé manualmente
-  app.post("/ligar", (req, res) => {
-    if (!relayState) {
-      relay.toggle(); // Liga o relé
-      relayState = true; // Atualiza o estado
-      console.log("Relé ativado manualmente!");
-    }
-    res.send("Relé ativado");
-  });
-
-  // Rota para desligar o relé manualmente
-  app.post("/desligar", (req, res) => {
-    if (relayState) {
-      relay.close(); // Desliga o relé
-      relayState = false; // Atualiza o estado
-      console.log("Relé desativado manualmente!");
-    }
-    res.send("Relé desligado");
-  });
-
-  // Rota para obter a tensão medida
-  app.get("/tensao", (req, res) => {
-    res.json({ tensao: tensao });
-  });
-
   // Inicia o servidor na porta 3000
   app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000");
