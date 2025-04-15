@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, "public")));
 board.on("ready", function () {
   console.log("Arduino conectado!");
 
-  const relay = new five.Relay(8); // Relé no pino 9
+  const relay = new five.Relay(9); // Relé no pino 9
   const sensorTensao = new five.Sensor({
     pin: "A0",
     freq: 1000, // Frequência de leitura ajustada para evitar oscilação excessiva
@@ -76,6 +76,10 @@ board.on("ready", function () {
       console.log("Energia insuficiente. Relé desligado.");
     }
   });
+
+  app.get("/tensao", (req, res) => {
+    res.json({ tensao: tensao})
+  })
 
   // Inicia o servidor na porta 3000
   app.listen(3000, () => {
