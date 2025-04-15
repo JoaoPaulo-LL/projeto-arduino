@@ -1,43 +1,3 @@
-// const five = require("johnny-five");
-// const board = new five.Board();
-
-// board.on("ready", function () {
-//   console.log("Arduino conectado!");
-
-//   var relay = new five.Relay(9); // Certifique-se de que está no pino certo
-
-//   const sensorTensao = new five.Sensor({
-//     pin: "A0",
-//     freq: 1000, // Frequência de leitura ajustada para evitar oscilação excessiva
-//   });
-
-//   const limite_min = 300; // Defina o limite de tensão
-
-//   let relayState = false; // Estado inicial do relé (desligado)
-
-//   sensorTensao.on("data", function () {
-//     console.log(`Tensão medida: ${this.value}`);
-//     // Se a tensão estiver acima do limite e o relé estiver desligado
-//     if (this.value > limite_min && !relayState) {
-//       relay.toggle(); // Liga o relé
-//       relayState = true; // Atualiza o estado do relé
-//       console.log("Energia suficiente! Relé ativado.");
-//     }
-//     // Se a tensão estiver abaixo do limite e o relé estiver ligado
-//     else if (this.value <= limite_min && relayState) {
-//       relay.close(); // Desliga o relé
-//       relayState = false; // Atualiza o estado do relé
-//       console.log("Energia insuficiente. Relé desligado.");
-//     }
-//   });
-
-//   this.on("exit", function () {
-//     relay.close(); // Desliga o relé quando o programa terminar
-//     console.log("Desligado!");
-//   });
-// });
-
-
 const express = require("express");
 const five = require("johnny-five");
 const path = require("path"); // Para definir o caminho correto para o arquivo HTML
@@ -53,7 +13,7 @@ app.use(express.static(path.join(__dirname, "public")));
 board.on("ready", function () {
   console.log("Arduino conectado!");
 
-  const relay = new five.Relay(9); // Relé no pino 9
+  const relay = new five.Relay(15); // Relé no pino 9
   const sensorTensao = new five.Sensor({
     pin: "A0",
     freq: 1000, // Frequência de leitura ajustada para evitar oscilação excessiva
