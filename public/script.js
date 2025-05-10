@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .catch(error => {
                 console.error("Erro ao obter tensão:", error);
-                esconderCarregando(); // Esconder o spinner em caso de erro
+                // esconderCarregando(); // Esconder o spinner em caso de erro
             });
     }
 
