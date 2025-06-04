@@ -1,12 +1,13 @@
 const express = require("express");
-const fetch = require("node-fetch"); // ou 'undici' se estiver usando versão moderna do Node
+const fetch = require("node-fetch"); // ou 'undici' se estiver usando versão moderna do Node sd
 const path = require("path");
 
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 
-const FIREBASE_URL = "https://project-arduino-e8951-default-rtdb.firebaseio.com";
+const FIREBASE_URL =
+  "https://project-arduino-e8951-default-rtdb.firebaseio.com";
 
 // Rota para obter os dados da tensão
 app.get("/tensao", async (req, res) => {
@@ -26,7 +27,7 @@ app.post("/ligar", async (req, res) => {
     await fetch(`${FIREBASE_URL}/rele.json`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(true)
+      body: JSON.stringify(true),
     });
     res.send("Relé ligado");
   } catch (error) {
@@ -41,7 +42,7 @@ app.post("/desligar", async (req, res) => {
     await fetch(`${FIREBASE_URL}/rele.json`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(false)
+      body: JSON.stringify(false),
     });
     res.send("Relé desligado");
   } catch (error) {
